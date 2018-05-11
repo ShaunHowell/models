@@ -125,8 +125,8 @@ def get_learning_rate(learning_rate, hidden_size, learning_rate_warmup_steps):
     # The full name includes variable and names scope. In this case, the name
     # is model/get_train_op/learning_rate/learning_rate
     tf.identity(learning_rate, "learning_rate")
-    # Save learning rate value to TensorBoard summary.
-    tf.summary.scalar("learning_rate", learning_rate)
+    # # Save learning rate value to TensorBoard summary.
+    # tf.summary.scalar("learning_rate", learning_rate)
 
     return learning_rate
 
@@ -157,9 +157,9 @@ def get_train_op(loss, params, use_tpu=False):
     train_op = optimizer.apply_gradients(
         gradients, global_step=global_step, name="train")
 
-    # Save gradient norm to Tensorboard
-    tf.summary.scalar("global_norm/gradient_norm",
-                      tf.global_norm(list(zip(*gradients))[0]))
+    # # Save gradient norm to Tensorboard
+    # tf.summary.scalar("global_norm/gradient_norm",
+    #                   tf.global_norm(list(zip(*gradients))[0]))
 
     return train_op
 
