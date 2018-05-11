@@ -77,7 +77,7 @@ def define_device(tpu=True):
                          help=help_wrap("Number of shards (TPU chips)."))
 
     msg = "batch_size must be a multiple of the number of shards"
-    @flags.multi_flags_validator(["num_shards", batch_size], message=msg)
+    @flags.multi_flags_validator(["num_shards", "batch_size"], message=msg)
     def _batch_size_validator(flag_vals):
       return (flag_vals["batch_size"] % flag_vals["num_shards"] == 0 and
               flag_vals["batch_size"] > flag_vals["num_shards"])
