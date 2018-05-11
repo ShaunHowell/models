@@ -62,6 +62,15 @@ class Manager(object):
         batch_size=self.batch_size,
         mode=tf.estimator.ModeKeys.TRAIN)
 
+  def get_single_iteration_eval_steps(self):
+    if not self.use_tpu:
+      return None
+
+    return dataset.epochs_to_steps(
+        num_epochs=1,
+        batch_size=self.batch_size,
+        mode=tf.estimator.ModeKeys.EVAL)
+
   def train_increment_str(self):
     if self._single_iteration_train_steps:
       return "{} steps.".format(self._single_iteration_train_steps)

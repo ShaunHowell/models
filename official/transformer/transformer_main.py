@@ -271,7 +271,9 @@ def run_loop(
         steps=schedule_manager.get_single_iteration_train_steps(),
         hooks=train_hooks)
 
-    eval_results = estimator.evaluate(input_fn=dataset.eval_input_fn)
+    eval_results = estimator.evaluate(
+        input_fn=dataset.eval_input_fn,
+        steps=schedule_manager.get_single_iteration_eval_steps())
     tf.logging.info("Evaluation results (iter %d/%d):" %
                     (i + 1, schedule_manager.train_eval_iterations))
     tf.logging.info(eval_results)
